@@ -25,9 +25,9 @@ And with a keyup event on a text element:
 		);
 	});
 
-When we press a key, say "u", we get an ajax call that will wait half a second (delay:500) for another key to be pressed, if not it will request projects.json as normal. If another key is pressed, say "p" the first event trigger (key u), which could be 340ms into it's delay, will be canceled and no ajax will be called, key p will now start it's delay, after 500ms a normal ajax request is made, but if another key is pressed the ajax is canceled and another delay is started, we can continue like this untill a delay is exhausted and a request is made and successful.
+When we press a key, say "u", we get an ajax call that will wait half a second (delay:500) for another key to be pressed, if not it will request projects.json as normal. If another key is pressed, say "p" the first event trigger (key u), which could be 340ms into it's delay, will be canceled and no ajax will be called, key p will now start it's delay, after 500ms a normal ajax request is made, but if another key is pressed the ajax is canceled and another delay is started, we can continue like this until a delay is exhausted and a successful request is made.
 
-The previous example was cancelling ajax requests (non blocking), if we want the user to click a button to retrieve the projects, where double clicking (or other abuse) would request the .json file twice, we can set blocking:true in the ajax options:
+The previous example was cancelling ajax requests (non blocking), if we want the user to click a button to retrieve the projects, where double clicking (or other abuse) would request the .json file more than once, we can set blocking:true in the ajax options:
 	$('a#filter-go').keyup(function(e){
 		$.ajax({url:'/projects.json',
 				data:{q:$('input#filter').val()},
@@ -50,7 +50,7 @@ The previous example was cancelling ajax requests (non blocking), if we want the
 
 This would simply make the first request as normal, but do nothing for all subsequent requests for this url until the first ajax request returned successful.
 
-This might not be good to restrict by url, some other project related ajax could be happening on the page so the following event handler specifies an index key (index_key:'project_list_filter') to use for this ajax driven feature:
+References are kept according to the URL the ajax is calling, this might not be a good idea, some other project related ajax could be happening on the page so the following event handler specifies a unique (to this ajax feature) index key (index_key:'project_list_filter'):
 	$('a#filter-go').keyup(function(e){
 		$.ajax({url:'/projects.json',
 				data:{q:$('input#filter').val()},
@@ -77,22 +77,29 @@ Now the projects filter will only call once for the first button click and not i
 Usage:
 ------
 
-$.ajax(options || {})
+	$.ajax(options || {})
 
-Options:
-    **singleton**:- boolean, default false
-                Turns this functionality on or explicitly off.
-    **delay**:- integer, default 0
-                The number of seconds before an ajax request is called,
-                provided it has not been blocked.
-    **blocking**:- boolean, default false
-                Switch between blocking and non blocking (aborting) mode
-    **index_key**:- string, default the request url
-                Assigns a key to this and subsequent requests, used for
-                avoiding conflicts between ajax requests to the same url
-                for different purposes.
+**Options:**
+
+**singleton**:- boolean, default false
+ Turns this functionality on or explicitly off.
+
+**delay**:- integer, default 0
+ The number of seconds before an ajax request is called,
+ provided it has not been blocked.
+
+**blocking**:- boolean, default false
+ Switch between blocking and non blocking (aborting) mode
+
+**index_key**:- string, default the request url
+ Assigns a key to this and subsequent requests, used for
+ avoiding conflicts between ajax requests to the same url
+ for different purposes.
 
 Known Issues
 ------------
 * For delayed initial requests (this first call with delay:500) this will not return an xmlHTTPrequest reference, this is because setTimeout is executing the $.ajax request in the window scope and cannot pass back the value to your function. However, subsequent requests that will be blocked will pass back the reference.
 
+Contributing
+------------
+All comments and bug reports are welcome, this plugin will be kept up-to-date and improved with my new features as and when i stumble across them. Forks and pull requests are also welcome.
