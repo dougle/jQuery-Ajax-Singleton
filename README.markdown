@@ -2,6 +2,7 @@ jQuery Ajax Singleton Plugin
 ============================
 
 This plugin's only function is to reduce ajax traffic in certain situations, a more efficient way of doing some UI features.
+Previous to this i was using setTimeout and clearTimeout for each ajax call, in short i was using timeouts more and more and getting bored of setting them up every time.
 
 With this plugin loaded in the normal way (after jquery):
 	<script src="/javascripts/jquery-ajax_singleton.js" type="text/javascript"></script>
@@ -99,6 +100,7 @@ Usage:
 Known Issues
 ------------
 * For delayed initial requests (the first call with delay:500) this will not return an xmlHTTPrequest reference, this is because setTimeout is executing the $.ajax request in the window scope and cannot pass back the value to your function. However, subsequent requests with blocking:true **will** pass back the reference.
+* Does not work for getJSON and the other ajax shortcut methods, the projects example above shows my getJSON call converted to longhand $.ajax to make use of this plugin, check out: [$.get](http://api.jquery.com/jQuery.get/) [$.getJSON](http://api.jquery.com/jQuery.getJSON/) [$.getScript](http://api.jquery.com/jQuery.getScript/) [$.post](http://api.jquery.com/jQuery.post/)
 
 Contributing
 ------------
