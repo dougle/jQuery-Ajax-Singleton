@@ -42,14 +42,14 @@ The previous example was cancelling ajax requests (non blocking), if we want the
 				dataType: 'json',
 	
 				singleton:true,
-				delay:500,
+				delay:0,
 				
 				blocking:true
 				}
 		);
 	});
 
-This would simply make the first request as normal, but do nothing for all subsequent requests for this url until the first ajax request returned successful.
+This would simply make the first request as normal (instantly as i have removed the delay in this example), but do nothing for all subsequent requests for this url until the first ajax request returned successful.
 
 References are kept according to the URL the ajax is calling, this might not be a good idea, some other project related ajax could be happening on the page so the following event handler specifies a unique (to this ajax feature) index key (`index_key:'project_list_filter'`):
 	$('a#filter-go').keyup(function(e){
@@ -103,7 +103,7 @@ My Implementation:
 		});
 	});
 	
-As you can see i'm passing autocomplete's `response` callback into the ajax settings (`response_callback:response,`), this way after setTimeout (at global scope) the callback is available in the success handler via `this.response_callback()`
+As you can see i'm passing autocomplete's `response` callback into the ajax settings (`response_callback:response`), this way after setTimeout (at global scope) the callback is available in the success handler via `this.response_callback()`
 
 Notice i turned autocomplete's delay off so i could cancel my own delays, this has given me an interuptable autocomplete that waits for the user to stop typing before it goes and gets the results.
 
