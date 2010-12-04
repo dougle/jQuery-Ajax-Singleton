@@ -98,7 +98,7 @@ Usage:
 
 Known Issues
 ------------
-* For delayed initial requests (this first call with delay:500) this will not return an xmlHTTPrequest reference, this is because setTimeout is executing the $.ajax request in the window scope and cannot pass back the value to your function. However, subsequent requests that will be blocked will pass back the reference.
+* For delayed initial requests (the first call with delay:500) this will not return an xmlHTTPrequest reference, this is because setTimeout is executing the $.ajax request in the window scope and cannot pass back the value to your function. However, subsequent requests with blocking:true **will** pass back the reference.
 
 Contributing
 ------------

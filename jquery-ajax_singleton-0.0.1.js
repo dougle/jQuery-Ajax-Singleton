@@ -1,3 +1,13 @@
+/*!
+ * jQuery Ajax Singleton v0.0.1
+ *
+ * Copyright 2010, Daniel Craig
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ *
+ * Date: Sat Feb 4 01:10 2010 GMT
+ */
 (function($){
 	// grab the original method
 	$.oajax = $.ajax;
