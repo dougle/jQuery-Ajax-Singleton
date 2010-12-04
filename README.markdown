@@ -75,6 +75,39 @@ References are kept according to the URL the ajax is calling, this might not be 
 
 Now the projects filter will only call once for the first button click and not interfere with anything else on the page, (like a project info window or something)
 
+
+I originally made this to use with the autocomplete in [jQuery UI](http://jqueryui.com/)
+Setting it up to trigger after three characters was cool, but it would fire and hit the DB after every character! Noooo!
+
+My Implementation:
+
+	init_name_autocomplete:function(input){
+		input = $(input);
+		input.autocomplete({delay:0, minLength:3,
+			source:function( request, response ) {
+				$.ajax({url:'/projects.json',
+						  data:{q:request.term},
+						  response_callback:response,
+						  success:function( data ) {
+										this.response_callback( $.map( data, function( item ) {
+											return {label: item.name, value: item.id}
+										}));
+									},
+						  type: "GET",
+						  dataType: 'json',
+						  singleton:true,
+						  delay:500,
+						  index_key:input.attr('id')}
+				);
+			})
+		});
+	});
+	
+As you can see i'm passing autocomplete's `response` callback into the ajax settings (`response_callback:response,`), this way after setTimeout (at global scope) the callback is available in the success handler via `this.response_callback()`
+
+Notice i turned autocomplete' delay off so i could cancel my own delays, this has given me an interuptable autocomplete that waits for the user to stop typing before it goes and gets the results.
+
+
 Usage:
 ------
 
