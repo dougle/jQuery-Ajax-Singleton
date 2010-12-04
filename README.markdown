@@ -119,11 +119,11 @@ Usage:
  Turns this functionality on or explicitly off.
 
 **delay**:- integer, default 0  
- The number of seconds before an ajax request is called,  
+ The number of miliseconds before an ajax request is called,  
  provided it has not been blocked.
 
 **blocking**:- boolean, default false  
- Switch between blocking and non blocking (aborting) mode
+ Switch between blocking and non blocking (aborting) mode.
 
 **index_key**:- string, default the request url  
  Assigns a key to this and subsequent requests, used for  
