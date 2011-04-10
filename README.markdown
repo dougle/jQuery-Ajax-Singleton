@@ -81,9 +81,7 @@ Setting it up to trigger after three characters was cool, but it would fire and 
 
 My Implementation:
 
-	init_name_autocomplete:function(input){
-		input = $(input);
-		input.autocomplete({delay:0, minLength:3,
+		$('input#project_lookup').autocomplete({delay:0, minLength:3,
 			source:function( request, response ) {
 				$.ajax({url:'/projects.json',
 						  data:{q:request.term},
@@ -97,11 +95,10 @@ My Implementation:
 						  dataType: 'json',
 						  singleton:true,
 						  delay:500,
-						  index_key:input.attr('id')}
-				);
-			})
+						  index_key:input.attr('id')
+				});
+			}
 		});
-	});
 	
 As you can see i'm passing autocomplete's `response` callback into the ajax settings (`response_callback:response`), this way after setTimeout (at global scope) the callback is available in the success handler via `this.response_callback()`
 
