@@ -76,6 +76,6 @@
 /* this is to clear up refs after every ajax call has completed
    this is necessary to unblock subsequent calls
 */
-$(document).ajaxComplete(function(e, xhr, s){
-	$.clear_xhr_refs(s.index_key);
+jQuery(document).ajaxComplete(function(e, xhr, s){
+	jQuery.clear_xhr_refs(s.index_key);
 });
