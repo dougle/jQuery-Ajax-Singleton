@@ -59,7 +59,7 @@
 					}};
 					
 				// no return ref for timeout stuff sorry
-				$.xhr_reference_index[s.index_key].timer = setTimeout("$.xhr_reference_index['"+ s.index_key +"'].callback();", parseInt(s.delay));
+				$.xhr_reference_index[s.index_key].timer = setTimeout("jQuery.xhr_reference_index['"+ s.index_key +"'].callback();", parseInt(s.delay));
 				return $.xhr_reference_index[s.index_key].timer;
 			}else{
 				// we have nothing to do, the user wants another ajax call asap
