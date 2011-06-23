@@ -8,6 +8,7 @@ With this plugin loaded in the normal way (after jquery):
 	<script src="/javascripts/jquery-ajax_singleton.js" type="text/javascript"></script>
 
 And with a keyup event on a text input element that makes an ajax request with the additional options `singleton:true` and `delay:500`:
+
 	$('input#filter').keyup(function(e){
 		$.ajax({url:'/projects.json',
 				data:{q:$(this).val()},
@@ -29,6 +30,7 @@ And with a keyup event on a text input element that makes an ajax request with t
 When we press a key, say "u", we get an ajax call that will wait half a second (`delay:500`) for another key to be pressed, if not it will request projects.json as normal. If another key is pressed, say "p" the first event trigger (key u), which could be 340ms into it's delay, will be canceled and no ajax will be called, key p will now start it's delay, after 500ms a normal ajax request is made, but if another key is pressed the ajax is canceled and another delay is started, we can continue like this until a delay is exhausted and a successful request is made.
 
 The previous example was cancelling ajax requests (non blocking), if we want the user to click a button to retrieve the projects, where double clicking (or other abuse) would request the .json file more than once, we can set `blocking:true` in the ajax options:
+
 	$('a#filter-go').keyup(function(e){
 		$.ajax({url:'/projects.json',
 				data:{q:$('input#filter').val()},
@@ -52,6 +54,7 @@ The previous example was cancelling ajax requests (non blocking), if we want the
 This would simply make the first request as normal (instantly as i have removed the delay in this example), but do nothing for all subsequent requests for this url until the first ajax request returned successful.
 
 References are kept according to the URL the ajax is calling, this might not be a good idea, some other project related ajax could be happening on the page so the following event handler specifies a unique (to this ajax feature) index key (`index_key:'project_list_filter'`):
+
 	$('a#filter-go').keyup(function(e){
 		$.ajax({url:'/projects.json',
 				data:{q:$('input#filter').val()},
