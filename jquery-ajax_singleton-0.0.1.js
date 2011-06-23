@@ -59,7 +59,7 @@
 					}};
 					
 				// no return ref for timeout stuff sorry
-				$.xhr_reference_index[s.index_key].timer = setTimeout("$.xhr_reference_index['"+ s.index_key +"'].callback();", parseInt(s.delay));
+				$.xhr_reference_index[s.index_key].timer = setTimeout("jQuery.xhr_reference_index['"+ s.index_key +"'].callback();", parseInt(s.delay));
 				return $.xhr_reference_index[s.index_key].timer;
 			}else{
 				// we have nothing to do, the user wants another ajax call asap
@@ -76,6 +76,6 @@
 /* this is to clear up refs after every ajax call has completed
    this is necessary to unblock subsequent calls
 */
-$(document).ajaxComplete(function(e, xhr, s){
-	$.clear_xhr_refs(s.index_key);
+jQuery(document).ajaxComplete(function(e, xhr, s){
+	jQuery.clear_xhr_refs(s.index_key);
 });
