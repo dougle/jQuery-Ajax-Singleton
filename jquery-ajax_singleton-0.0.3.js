@@ -1,12 +1,12 @@
 /*!
- * jQuery Ajax Singleton v0.0.2
+ * jQuery Ajax Singleton v0.0.3
  *
  * Copyright 2010, Daniel Craig
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
  *
- * Date: Sat Feb 4 01:10 2010 GMT
+ * Date: Sat 4 Feb 01:10 2010 GMT
  */
 (function($){
 	// grab the original method
@@ -63,7 +63,11 @@
 				return $.xhr_reference_index[s.index_key].timer;
 			}else{
 				// we have nothing to do, the user wants another ajax call asap
-				return $.oajax(s);
+				$.xhr_reference_index[s.index_key] = {xhr:$.oajax(s),timer:undefined,
+					callback:function(){}
+				};
+
+				return $.xhr_reference_index[s.index_key].xhr;
 			}
 		};
 		
