@@ -58,7 +58,7 @@
 						$.xhr_reference_index[s.index_key].xhr = $.oajax(s);
 					}};
 					
-				// no return ref for timeout stuff sorry
+				// no ajax return ref for timeout stuff sorry
 				$.xhr_reference_index[s.index_key].timer = setTimeout("jQuery.xhr_reference_index['"+ s.index_key +"'].callback();", parseInt(s.delay));
 				return $.xhr_reference_index[s.index_key].timer;
 			}else{
