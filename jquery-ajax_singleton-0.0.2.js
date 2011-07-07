@@ -1,5 +1,5 @@
 /*!
- * jQuery Ajax Singleton v0.0.1
+ * jQuery Ajax Singleton v0.0.2
  *
  * Copyright 2010, Daniel Craig
  * Dual licensed under the MIT or GPL Version 2 licenses.
