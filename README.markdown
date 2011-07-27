@@ -31,7 +31,7 @@ When we press a key, say "u", we get an ajax call that will wait half a second (
 
 The previous example was cancelling ajax requests (non blocking), if we want the user to click a button to retrieve the projects, where double clicking (or other abuse) would request the .json file more than once, we can set `blocking:true` in the ajax options:
 
-	$('a#filter-go').keyup(function(e){
+	$('a#filter-go').click(function(e){
 		$.ajax({url:'/projects.json',
 				data:{q:$('input#filter').val()},
 				success:function( data ) {
@@ -55,7 +55,7 @@ This would simply make the first request as normal (instantly as i have removed 
 
 References are kept according to the URL the ajax is calling, this might not be a good idea, some other project related ajax could be happening on the page so the following event handler specifies a unique (to this ajax feature) index key (`index_key:'project_list_filter'`):
 
-	$('a#filter-go').keyup(function(e){
+	$('a#filter-go').click(function(e){
 		$.ajax({url:'/projects.json',
 				data:{q:$('input#filter').val()},
 				success:function( data ) {
