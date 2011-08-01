@@ -4,7 +4,7 @@ jQuery Ajax Singleton Plugin
 This plugin's only function is to reduce ajax traffic in certain situations, a more efficient way of doing some UI features.
 Previous to this i was using setTimeout and clearTimeout for each ajax call, in short i was using timeouts more and more and getting bored of setting them up every time.
 
-With this plugin loaded in the normal way (after jquery):
+With this plugin loaded in the normal way (after [jquery](http://github.com/jquery/jquery)):
 	<script src="/javascripts/jquery-ajax_singleton.js" type="text/javascript"></script>
 
 And with a keyup event on a text input element that makes an ajax request with the additional options `singleton:true` and `delay:500`:
@@ -79,7 +79,7 @@ References are kept according to the URL the ajax is calling, this might not be 
 Now the projects filter will only call once for the first button click and not interfere with anything else on the page, (like a project info window or something)
 
 
-I originally made this to use with the autocomplete in [jQuery UI](http://jqueryui.com/)  
+I originally made this to use with the autocomplete in [jQuery UI](http://github.com/jquery/jquery-ui)  
 Setting it up to trigger after three characters was cool, but it would fire and hit the DB after every character! Noooo!
 
 My Implementation:
