@@ -5,6 +5,7 @@ This plugin's only function is to reduce ajax traffic in certain situations, a m
 Previous to this i was using setTimeout and clearTimeout for each ajax call, in short i was using timeouts more and more and getting bored of setting them up every time.
 
 With this plugin loaded in the normal way (after [jquery](http://github.com/jquery/jquery)):
+
 	<script src="/javascripts/jquery-ajax_singleton.js" type="text/javascript"></script>
 
 And with a keyup event on a text input element that makes an ajax request with the additional options `singleton:true` and `delay:500`:
@@ -84,24 +85,24 @@ Setting it up to trigger after three characters was cool, but it would fire and 
 
 My Implementation:
 
-		$('input#project_lookup').autocomplete({delay:0, minLength:3,
-			source:function( request, response ) {
-				$.ajax({url:'/projects.json',
-						  data:{q:request.term},
-						  response_callback:response,
-						  success:function( data ) {
-								this.response_callback( $.map( data, function( item ) {
-									return {label: item.name, value: item.id}
-								}));
-						  },
-						  type: "GET",
-						  dataType: 'json',
-						  singleton:true,
-						  delay:500,
-						  index_key:input.attr('id')
-				});
-			}
-		});
+	$('input#project_lookup').autocomplete({delay:0, minLength:3,
+		source:function( request, response ) {
+			$.ajax({url:'/projects.json',
+					  data:{q:request.term},
+					  response_callback:response,
+					  success:function( data ) {
+							this.response_callback( $.map( data, function( item ) {
+								return {label: item.name, value: item.id}
+							}));
+					  },
+					  type: "GET",
+					  dataType: 'json',
+					  singleton:true,
+					  delay:500,
+					  index_key:input.attr('id')
+			});
+		}
+	});
 	
 As you can see i'm passing autocomplete's `response` callback into the ajax settings (`response_callback:response`), this way after setTimeout (at global scope) the callback is available in the success handler via `this.response_callback()`
 
