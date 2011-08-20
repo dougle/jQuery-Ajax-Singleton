@@ -1,4 +1,4 @@
-jQuery Ajax Singleton Plugin
+jQuery Ajax Singleton Plugin [![Flattr this project](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=dougle&url=http://github.com/dougle/jQuery-Ajax-Singleton&title=jQuery Ajax Singleton&language=en_GB&tags=github&category=software)  
 ============================
 
 This plugin's only function is to reduce ajax traffic in certain situations, a more efficient way of doing some UI features.
